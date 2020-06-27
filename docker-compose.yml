@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./app
+    command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    expose:
+      - 8000
+    environment:
+      - SECRET_KEY==1oqm3k4jtuv%pqz=spd!^sjgsicv6cqm#8t6q@&pco_v398wg
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=postgres
+      - SQL_USER=postgres
+      - SQL_PASSWORD=postgres
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+      - USE_S3=TRUE
+      - AWS_ACCESS_KEY_ID=AKIA3TKAYSFZPNZ7HF7O
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_STORAGE_BUCKET_NAME=project2020sce
+    depends_on:
+      - db
+  db:
+    image: postgres:12.1-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
