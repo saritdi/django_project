@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=1oqm3k4jtuv%pqz=spd!^sjgsicv6cqm#8t6q@&pco_v398wg'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -128,8 +128,8 @@ USE_S3 = 'TRUE'
 
 if USE_S3:
     # aws settings
-    AWS_ACCESS_KEY_ID = 'AKIA3TKAYSFZPNZ7HF7O'
-    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_ACCESS_KEY_ID = ''
+    AWS_SECRET_ACCESS_KEY = ''
     AWS_STORAGE_BUCKET_NAME = 'project2020sce'
     AWS_DEFAULT_ACL = 'public-read'
     AWS_S3_CUSTOM_DOMAIN = f'project2020sce.s3.amazonaws.com'
